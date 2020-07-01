@@ -6,5 +6,6 @@
     public interface ICountriesService
     {
         Task<IList<Country>> GetAll();
+        Task<IList<Country>> GetByName(string name);
     }
 }

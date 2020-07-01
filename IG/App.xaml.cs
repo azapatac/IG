@@ -19,6 +19,7 @@
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            MapperSettings.Register(containerRegistry);
             PagesContainer.Register(containerRegistry);
             ServicesContainer.Register(containerRegistry);
         }

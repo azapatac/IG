@@ -1,7 +1,109 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="IG.MainPage">
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:IG"
+    ios:Page.UseSafeArea="True"
+
+    x:Class="IG.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <local:UppercaseTextConverter x:Key="UppercaseTextConverter"/>
+
+            <Style
+                TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Black"/>
+                <Setter Property="CornerRadius" Value="1"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="TextColor" Value="WhiteSmoke"/>
+            </Style>
+
+            <Style
+                TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="WhiteSmoke"/>
+                <Setter Property="CornerRadius" Value="1"/>
+                <Setter Property="HasShadow" Value="False"/>
+            </Style>
+
+            <Style
+                TargetType="Label">                
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout
+        BackgroundColor="LightGray"
+        Padding="10">
+
+        <SearchBar
+            BackgroundColor="Transparent"
+            SearchCommand="{Binding SearchCountryCommand}"
+            Text="{Binding Country}"
+            Placeholder="Search country"/>
+
+        <CollectionView            
+            ItemsSource="{Binding Countries}"
+            VerticalScrollBarVisibility="Never">
+            <CollectionView.EmptyView>
+                <Label
+                    Grid.Column="1"
+                    FontSize="Subtitle"
+                    HorizontalOptions="Center"
+                    Text="Sin datos"
+                    VerticalOptions="Center"/>                
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid
+                        Padding="0, 10">
+
+                        <Frame
+                            BackgroundColor="#AAA7A7"
+                            Margin="5, 0, -5, -5">
+                        </Frame>
+
+                        <Frame
+                            Padding="20, 10"
+                            Margin="0, -5, 5, 0">
+
+                            <Grid
+                                ColumnDefinitions="50, *"
+                                ColumnSpacing="20"
+                                RowDefinitions="Auto, Auto, Auto">
+
+                                <Button
+                                    Grid.RowSpan="2"
+                                    Command="{Binding GoToCountryCommand}"
+                                    Text="GO"/>
+
+                                <Label
+                                    Grid.Column="1"
+                                    FontSize="Subtitle"
+                                    LineBreakMode="TailTruncation"
+                                    Text="{Binding Name, Converter={StaticResource UppercaseTextConverter}}"/>
+
+                                <Label
+                                    Grid.Column="1"
+                                    Grid.Row="1"
+                                    FontSize="Default"
+                                    Text="{Binding Capital}"/>
+
+                                <Label
+                                    Grid.Column="1"
+                                    Grid.Row="2"
+                                    FontSize="Subtitle"
+                                    Text="{Binding Region, Converter={StaticResource UppercaseTextConverter}}"/>
+
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
     </StackLayout>
 </ContentPage>
