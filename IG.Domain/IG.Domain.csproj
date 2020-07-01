@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IG.Common\IG.Common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="refit" Version="5.1.67" />
+  </ItemGroup>
+</Project>

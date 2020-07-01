@@ -1,28 +1,26 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace IG
+﻿namespace IG
 {
-    public partial class App : Application
+    using IG.Common;
+    using Prism;
+    using Prism.Ioc;
+
+    public partial class App
     {
-        public App()
+        public App() : this(null) { }
+
+        public App(IPlatformInitializer initializer) : base(initializer) { }
+
+        protected override async void OnInitialized()
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            await NavigationService.NavigateAsync(NavigationRoutes.Main);
         }
 
-        protected override void OnStart()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-        }
-
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
+            PagesContainer.Register(containerRegistry);
+            ServicesContainer.Register(containerRegistry);
         }
     }
 }
