@@ -152,4 +152,7 @@
   <ItemGroup>
     <Folder Include="Settings\" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\splash.png" />
+  </ItemGroup>
 </Project>
