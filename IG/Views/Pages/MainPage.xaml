@@ -53,7 +53,7 @@
                     Grid.Column="1"
                     FontSize="Subtitle"
                     HorizontalOptions="Center"
-                    Text="Sin datos"
+                    Text="No data"
                     VerticalOptions="Center"/>                
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
